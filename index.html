@@ -4,7 +4,7 @@
     <title>qantixs</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="CLpnv1vnDQ6j1YtFbfBrRs1g5JoqjQ6YdlPcb9qWn6l658keJj2zmOPik9ZymiKOw7ye6n1AkofJKgz72xAlGg" />
+<meta name="csrf-token" content="5o4A0Cs9Z4_9TnkCcx7ImryQfI1yEGeid6X-Y2Gf7rgXAhKkeRDuc_bLvbp6v16Lxj9yds59wEfCu8vilY5ctQ" />
     
     <link rel="stylesheet" href="/assets/tailwind-3412c732f5798747a79518c486e50215511b548528ef818ad1582966f271201a.css" data-turbo-track="reload" />
 <link rel="stylesheet" href="/assets/inter-font-8c3e82affb176f4bca9616b838d906343d1251adc8408efe02cf2b1e4fcf2bc4.css" data-turbo-track="reload" />
@@ -30,7 +30,82 @@
 
   <body>
     <main class="container mx-auto mt-28 px-5 ">
-      <div class="flex flex-row">
+      <script>
+window.onload = function(){
+  drawQantixsLogo("qantixs_logo_8");
+  drawQantixsLogo("qantixs_logo_16");
+  drawQantixsLogo("qantixs_logo_24");
+  drawQantixsLogo("qantixs_logo_32");
+  drawQantixsLogo("qantixs_logo_64");
+  drawQantixsLogo("qantixs_logo_128");
+  drawQantixsLogo("qantixs_logo_256");
+}
+
+function drawQantixsLogo(id) {
+    var canvas = document.getElementById(id);
+    var ctx = canvas.getContext("2d");
+
+  const logoSize = Math.min(canvas.height, canvas.width);
+  const logoSizeHalf = logoSize / 2.0;
+  const radius = logoSize / 16.0;
+  const diameter = 2.0 * radius;
+  const spacing = 0.8 * radius;
+  const startAngle = 0;
+  const endAngle = 2 * Math.PI;
+  const ballCnt = 6;
+  const maskSize = Math.sqrt(2) * logoSize;
+  const sin_pi_4 = Math.sin(Math.PI / 4.0);
+  const cos_pi_4 = Math.cos(Math.PI / 4.0);
+  console.log("logoSize:", logoSize, "radius:", radius, " spacing: ", spacing);
+
+    ctx.beginPath();
+    ctx.fillStyle = "#ffffff";
+  ctx.rect(0, 0, logoSize, logoSize);
+  ctx.fill();
+
+    ctx.beginPath();
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = "#0094ff";
+     ctx.fillStyle = "#0094ff";
+
+  for (let col = 0; col < ballCnt; col++) {
+    for (let row = 0; row < ballCnt; row++) {
+      ctx.beginPath();
+
+      var x = radius + spacing * col + diameter * col;
+      var y = radius + spacing * row + diameter * row;
+
+      // vec_r´ = Translate_Inverse o Rotation o Translate(vec_r)
+      // Translate
+      x = x - logoSizeHalf;
+      y = y - logoSizeHalf;
+
+      // Rotate
+      var xx = x * cos_pi_4 + y * sin_pi_4;
+      var yy = x * (-1) * sin_pi_4 + y * cos_pi_4;
+
+      // Translate_Inverse
+      xx = xx + logoSizeHalf;
+      yy = yy + logoSizeHalf;
+
+      ctx.arc(xx, yy, radius, startAngle, endAngle, true);
+      ctx.fill();
+    }
+  }
+
+    ctx.beginPath();
+    ctx.fillStyle = "#ffffff";
+  ctx.moveTo(0, 0);
+  ctx.lineTo(maskSize * logoSize, 0);
+  ctx.lineTo(maskSize * logoSize, maskSize * logoSize);
+  ctx.lineTo(0, maskSize * logoSize);
+
+  ctx.moveTo(logoSizeHalf, logoSizeHalf);
+  ctx.arc(logoSizeHalf, logoSizeHalf, logoSizeHalf, startAngle, endAngle, true);
+  ctx.fill();
+}
+</script>
+<div class="flex flex-row">
   <img src="/assets/qantixs_logo_q6_name_lg-a356a0d5dad1464511decf46f1a5ee32bf41626abbf4601e834820a96309c033.png" />
 </div>
 <br>
@@ -58,10 +133,34 @@
     <br>
     <img src="/assets/qantixs_logo_q6_lg-9dac2e66c56026ae136fe0e23115f7aca0719eb4a43be59cd9676ff1ab217344.png" width="256" height="256" /> px: 256
   </div>
+  <div class="basis-3/6">
+    <h1 class="text-5xl">qantixs dyn logo</h1>
+  <br>
+  <canvas width="8px" height="8px" id="qantixs_logo_8" style="height: 8px; width: 8px;"></canvas>
+  px: 8
+  <br>
+  <canvas width="16px" height="16px" id="qantixs_logo_16" style="height: 16px; width: 16px;"></canvas>
+  px: 16
+  <br>
+  <canvas width="24px" height="24px" id="qantixs_logo_24" style="height: 24px; width: 24px;"></canvas>
+  px: 24
+  <br>
+  <canvas width="32px" height="32px" id="qantixs_logo_32" style="height: 32px; width: 32px;"></canvas>
+  px: 32
+  <br>
+  <canvas width="64px" height="64px" id="qantixs_logo_64" style="height: 64px; width: 64px;"></canvas>
+  px: 64
+  <br>
+  <canvas width="128px" height="128px" id="qantixs_logo_128" style="height: 128px; width: 128px;"></canvas>
+  px: 128
+  <br>
+  <canvas width="256px" height="256px" id="qantixs_logo_256" style="height: 256px; width: 256px;"></canvas>
+  px: 256
+  </div>
 </div>
 
       <br>
-      <p>r4</p>
+      <p>r6</p>
     </main>
   </body>
 </html>
