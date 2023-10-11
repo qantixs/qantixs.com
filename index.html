@@ -4,7 +4,7 @@
     <title>qantixs</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="v7AznCj18FA5t2Qx1GmVyRacBqkMc9gXgRa1QtxnWEbF5nZ3n0azvKXfY_hvoIQITC1WdHoj5Xj0eutWqEzZIA" />
+<meta name="csrf-token" content="dI4nOa3LEziuzOJ42Fw61ySz4C10SdJU10nsN2AJgFNynfaMk-QHnJ14vobK3CF1UttR1N8mMJvHkFXjIm6JUQ" />
     
     <link rel="stylesheet" href="/assets/tailwind-d15506f6643b72a8c2c7a5d20e89ccdb76ec3b5b2cf39f8e3db2468ccb472786.css" data-turbo-track="reload" />
 <link rel="stylesheet" href="/assets/inter-font-8c3e82affb176f4bca9616b838d906343d1251adc8408efe02cf2b1e4fcf2bc4.css" data-turbo-track="reload" />
@@ -13,8 +13,8 @@
   "imports": {
     "application": "/assets/application-37f365cbecf1fa2810a8303f4b6571676fa1f9c56c248528bc14ddb857531b95.js",
     "@hotwired/turbo-rails": "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js",
-    "@hotwired/stimulus": "/assets/stimulus.min-d03cf1dff41d6c5698ec2c5d6a501615a7a33754dbeef8d1edd31c928d17c652.js",
-    "@hotwired/stimulus-loading": "/assets/stimulus-loading-1fc59770fb1654500044afd3f5f6d7d00800e5be36746d55b94a2963a7a228aa.js",
+    "@hotwired/stimulus": "/assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js",
+    "@hotwired/stimulus-loading": "/assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js",
     "controllers/application": "/assets/controllers/application-368d98631bccbf2349e0d4f8269afb3fe9625118341966de054759d96ea86c7e.js",
     "controllers/hello_controller": "/assets/controllers/hello_controller-549135e8e7c683a538c3d6d517339ba470fcfb79d62f738a0a089ba41851a554.js",
     "controllers": "/assets/controllers/index-2db729dddcc5b979110e98de4b6720f83f91a123172e87281d5a58410fc43806.js"
@@ -22,8 +22,8 @@
 }</script>
 <link rel="modulepreload" href="/assets/application-37f365cbecf1fa2810a8303f4b6571676fa1f9c56c248528bc14ddb857531b95.js">
 <link rel="modulepreload" href="/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js">
-<link rel="modulepreload" href="/assets/stimulus.min-d03cf1dff41d6c5698ec2c5d6a501615a7a33754dbeef8d1edd31c928d17c652.js">
-<link rel="modulepreload" href="/assets/stimulus-loading-1fc59770fb1654500044afd3f5f6d7d00800e5be36746d55b94a2963a7a228aa.js">
+<link rel="modulepreload" href="/assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js">
+<link rel="modulepreload" href="/assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js">
 <script src="/assets/es-module-shims.min-4ca9b3dd5e434131e3bb4b0c1d7dff3bfd4035672a5086deec6f73979a49be73.js" async="async" data-turbo-track="reload"></script>
 <script type="module">import "application"</script>
   </head>
@@ -32,20 +32,30 @@
     <main class="container mx-auto mt-28 px-5 ">
       <script>
 window.onload = function(){
-  drawQantixsLogo("qantixs_logo_8");
-  drawQantixsLogo("qantixs_logo_16");
-  drawQantixsLogo("qantixs_logo_24");
-  drawQantixsLogo("qantixs_logo_32");
-  drawQantixsLogo("qantixs_logo_64");
-  drawQantixsLogo("qantixs_logo_128");
-  drawQantixsLogo("qantixs_logo_256");
+  registerQantixsLogo("qantixs_logo_8");
+  registerQantixsLogo("qantixs_logo_16");
+  registerQantixsLogo("qantixs_logo_24");
+  registerQantixsLogo("qantixs_logo_32");
+  registerQantixsLogo("qantixs_logo_64");
+  registerQantixsLogo("qantixs_logo_128");
+  registerQantixsLogo("qantixs_logo_256");
 }
 
-function drawQantixsLogo(id) {
-    var canvas = document.getElementById(id);
-    var ctx = canvas.getContext("2d");
+function registerQantixsLogo(id) {
+  console.log("registerQantixsLogo:", id);
+  var canvas = document.getElementById(id);
+  var ctx = canvas.getContext("2d");
 
-  const logoSize = Math.min(canvas.height, canvas.width);
+  canvas.addEventListener("mousemove", (e) => {
+    //console.log("mousemove: ", id, e.offsetX, e.offsetY);
+    drawQantixsLogo(ctx, canvas.height, canvas.width, e.offsetX, e.offsetY);
+  });
+
+  drawQantixsLogo(ctx, canvas.height, canvas.width, -1, -1);
+}
+
+function drawQantixsLogo(ctx, cH, cW, mX, mY) {
+  const logoSize = Math.min(cH, cW);
   const logoSizeHalf = logoSize / 2.0;
   const radius = logoSize / 16.0;
   const diameter = 2.0 * radius;
@@ -56,22 +66,17 @@ function drawQantixsLogo(id) {
   const maskSize = Math.sqrt(2) * logoSize;
   const sin_pi_4 = Math.sin(Math.PI / 4.0);
   const cos_pi_4 = Math.cos(Math.PI / 4.0);
-  console.log("logoSize:", logoSize, "radius:", radius, " spacing: ", spacing);
+  //console.log("logoSize:", logoSize, "radius:", radius, "spacing:", spacing, "mX:", mX, "mY:", mY);
 
-    ctx.beginPath();
-    ctx.fillStyle = "#ffffff";
+  ctx.beginPath();
+  ctx.lineWidth = 1;
+  ctx.fillStyle = "#ffffff";
   ctx.rect(0, 0, logoSize, logoSize);
   ctx.fill();
 
-    ctx.beginPath();
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = "#0094ff";
-     ctx.fillStyle = "#0094ff";
-
   for (let col = 0; col < ballCnt; col++) {
     for (let row = 0; row < ballCnt; row++) {
-      ctx.beginPath();
-
+      var circle = new Path2D();
       var x = radius + spacing * col + diameter * col;
       var y = radius + spacing * row + diameter * row;
 
@@ -88,13 +93,22 @@ function drawQantixsLogo(id) {
       xx = xx + logoSizeHalf;
       yy = yy + logoSizeHalf;
 
-      ctx.arc(xx, yy, radius, startAngle, endAngle, true);
-      ctx.fill();
+      circle.moveTo(xx, yy);
+      circle.arc(xx, yy, radius, startAngle, endAngle, true);
+
+      if (ctx.isPointInPath(circle, mX, mY)) {
+        ctx.fillStyle = "#ff9400";
+      }
+      else {
+        ctx.fillStyle = "#0094ff";
+      }
+
+      ctx.fill(circle);
     }
   }
 
-    ctx.beginPath();
-    ctx.fillStyle = "#ffffff";
+  ctx.beginPath();
+  ctx.fillStyle = "#ffffff";
   ctx.moveTo(0, 0);
   ctx.lineTo(maskSize * logoSize, 0);
   ctx.lineTo(maskSize * logoSize, maskSize * logoSize);
@@ -160,7 +174,7 @@ function drawQantixsLogo(id) {
 </div>
 
       <br>
-      <p>r7</p>
+      <p>r8</p>
     </main>
   </body>
 </html>
