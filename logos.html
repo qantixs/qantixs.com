@@ -4,7 +4,7 @@
     <title>qantixs</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="hsOjiAWO9GbcFbr6vp2AIrTNBMZ7Xp1C3ftl6tvyGWJ2_V6cUzYJp3gQfxm7USrGTw5tb7RDiTB70IAV1ArgDw" />
+<meta name="csrf-token" content="bO0WSpGeT-ZnC2_m0--n4_5ZxOvnAvvw1OfHrr-Hpvqc0-texyayJ8MOqgXWIw0HBZqtQigf74JyzCJRsH9flw" />
     
     <link rel="stylesheet" href="/assets/tailwind-6470b2096cc5659ccc9275f2cd48f3860268bad7e1ba2d0a7643acefb83284d6.css" data-turbo-track="reload" />
 <link rel="stylesheet" href="/assets/inter-font-8c3e82affb176f4bca9616b838d906343d1251adc8408efe02cf2b1e4fcf2bc4.css" data-turbo-track="reload" />
@@ -45,6 +45,12 @@
     <main class="container mx-auto mt-28 px-5 ">
       <script>
 window.onload = function(){
+  registerQantixsLogo("qantixs_logo_8");
+  registerQantixsLogo("qantixs_logo_16");
+  registerQantixsLogo("qantixs_logo_24");
+  registerQantixsLogo("qantixs_logo_32");
+  registerQantixsLogo("qantixs_logo_64");
+  registerQantixsLogo("qantixs_logo_128");
   registerQantixsLogo("qantixs_logo_256");
 }
 
@@ -126,8 +132,67 @@ function drawQantixsLogo(ctx, cH, cW, mX, mY) {
   ctx.fill();
 }
 </script>
+<div>
+  <canvas width="128px" height="128px" id="qantixs_logo_128" style="height: 128px; width: 128px;"></canvas>
+  <div class="qantixs-logo" style="font-size: 128px; margin-top: 24px; margin-bottom: 24px;">
+  qantixs</div>
+  </div>
+<br>
+<br>
+<br>
+
 <div class="flex flex-row">
   <img src="/assets/qantixs_logo_q6_name_lg-a356a0d5dad1464511decf46f1a5ee32bf41626abbf4601e834820a96309c033.png" />
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="flex flex-row">
+  <div class="basis-3/6">
+    <h1 class="text-5xl">static logo</h1>
+    <br>
+    <img src="/assets/qantixs_logo_q6_lg-9dac2e66c56026ae136fe0e23115f7aca0719eb4a43be59cd9676ff1ab217344.png" width="8" height="8" /> px: 8
+    <br>
+    <img src="/assets/qantixs_logo_q6_lg-9dac2e66c56026ae136fe0e23115f7aca0719eb4a43be59cd9676ff1ab217344.png" width="16" height="16" /> px: 16
+    <br>
+    <img src="/assets/qantixs_logo_q6_lg-9dac2e66c56026ae136fe0e23115f7aca0719eb4a43be59cd9676ff1ab217344.png" width="24" height="24" /> px: 24
+    <br>
+    <img src="/assets/qantixs_logo_q6_lg-9dac2e66c56026ae136fe0e23115f7aca0719eb4a43be59cd9676ff1ab217344.png" width="32" height="32" /> px: 32
+    <br>
+    <img src="/assets/qantixs_logo_q6_lg-9dac2e66c56026ae136fe0e23115f7aca0719eb4a43be59cd9676ff1ab217344.png" width="64" height="64" /> px: 64
+    <br>
+    <img src="/assets/qantixs_logo_q6_lg-9dac2e66c56026ae136fe0e23115f7aca0719eb4a43be59cd9676ff1ab217344.png" width="128" height="128" /> px: 128
+    <br>
+    <img src="/assets/qantixs_logo_q6_lg-9dac2e66c56026ae136fe0e23115f7aca0719eb4a43be59cd9676ff1ab217344.png" width="256" height="256" /> px: 256
+  </div>
+  <div class="basis-3/6">
+    <h1 class="text-5xl">dynamic logo</h1>
+  <br>
+  <canvas width="8px" height="8px" id="qantixs_logo_8" style="height: 8px; width: 8px;"></canvas>
+  px: 8
+  <br>
+  <canvas width="16px" height="16px" id="qantixs_logo_16" style="height: 16px; width: 16px;"></canvas>
+  px: 16
+  <br>
+  <canvas width="24px" height="24px" id="qantixs_logo_24" style="height: 24px; width: 24px;"></canvas>
+  px: 24
+  <br>
+  <canvas width="32px" height="32px" id="qantixs_logo_32" style="height: 32px; width: 32px;"></canvas>
+  px: 32
+  <br>
+  <canvas width="64px" height="64px" id="qantixs_logo_64" style="height: 64px; width: 64px;"></canvas>
+  px: 64
+  <br>
+  <canvas width="128px" height="128px" id="qantixs_logo_128" style="height: 128px; width: 128px;"></canvas>
+  px: 128
+  <br>
+  <canvas width="256px" height="256px" id="qantixs_logo_256" style="height: 256px; width: 256px;"></canvas>
+  px: 256
+  </div>
 </div>
 
       <br>
