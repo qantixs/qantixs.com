@@ -4,7 +4,7 @@
     <title>qantixs</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="bO0WSpGeT-ZnC2_m0--n4_5ZxOvnAvvw1OfHrr-Hpvqc0-texyayJ8MOqgXWIw0HBZqtQigf74JyzCJRsH9flw" />
+<meta name="csrf-token" content="0dnsZ9Ohuf5g0G1RbssdJvUXQHZQPomcHN4zITJtspHUOoHyCVzr8HRmFbOSGb9FBSRzQExiwWIrkCd_uXu4fg" />
     
     <link rel="stylesheet" href="/assets/tailwind-6470b2096cc5659ccc9275f2cd48f3860268bad7e1ba2d0a7643acefb83284d6.css" data-turbo-track="reload" />
 <link rel="stylesheet" href="/assets/inter-font-8c3e82affb176f4bca9616b838d906343d1251adc8408efe02cf2b1e4fcf2bc4.css" data-turbo-track="reload" />
@@ -51,6 +51,7 @@ window.onload = function(){
   registerQantixsLogo("qantixs_logo_32");
   registerQantixsLogo("qantixs_logo_64");
   registerQantixsLogo("qantixs_logo_128");
+  registerQantixsLogo("qantixs_logo_128_n1");
   registerQantixsLogo("qantixs_logo_256");
 }
 
@@ -70,9 +71,9 @@ function registerQantixsLogo(id) {
 function drawQantixsLogo(ctx, cH, cW, mX, mY) {
   const logoSize = Math.min(cH, cW);
   const logoSizeHalf = logoSize / 2.0;
-  const radius = logoSize / 16.0;
+  const radius = 2 * logoSize / 29.0;
   const diameter = 2.0 * radius;
-  const spacing = 0.8 * radius;
+  const spacing = radius / 2.0;
   const startAngle = 0;
   const endAngle = 2 * Math.PI;
   const ballCnt = 6;
@@ -142,7 +143,7 @@ function drawQantixsLogo(ctx, cH, cW, mX, mY) {
 <br>
 
 <div class="flex flex-row">
-  <img src="/assets/qantixs_logo_q6_name_lg-a356a0d5dad1464511decf46f1a5ee32bf41626abbf4601e834820a96309c033.png" />
+  <img src="/assets/qantixs_logo_q6_name_lg-1218badf03952e943ea27726fc4fde8c0464f49813ff57a7cac5b476aaabf2a1.png" />
 </div>
 <br>
 <br>
@@ -155,19 +156,19 @@ function drawQantixsLogo(ctx, cH, cW, mX, mY) {
   <div class="basis-3/6">
     <h1 class="text-5xl">static logo</h1>
     <br>
-    <img src="/assets/qantixs_logo_q6_lg-9dac2e66c56026ae136fe0e23115f7aca0719eb4a43be59cd9676ff1ab217344.png" width="8" height="8" /> px: 8
+    <img src="/assets/qantixs_logo_q6_lg-47de647414e6d6a9a08db7fb66056da5b5bc622b9ed9c60e766b04ccdaada2f0.png" width="8" height="8" /> px: 8
     <br>
-    <img src="/assets/qantixs_logo_q6_lg-9dac2e66c56026ae136fe0e23115f7aca0719eb4a43be59cd9676ff1ab217344.png" width="16" height="16" /> px: 16
+    <img src="/assets/qantixs_logo_q6_lg-47de647414e6d6a9a08db7fb66056da5b5bc622b9ed9c60e766b04ccdaada2f0.png" width="16" height="16" /> px: 16
     <br>
-    <img src="/assets/qantixs_logo_q6_lg-9dac2e66c56026ae136fe0e23115f7aca0719eb4a43be59cd9676ff1ab217344.png" width="24" height="24" /> px: 24
+    <img src="/assets/qantixs_logo_q6_lg-47de647414e6d6a9a08db7fb66056da5b5bc622b9ed9c60e766b04ccdaada2f0.png" width="24" height="24" /> px: 24
     <br>
-    <img src="/assets/qantixs_logo_q6_lg-9dac2e66c56026ae136fe0e23115f7aca0719eb4a43be59cd9676ff1ab217344.png" width="32" height="32" /> px: 32
+    <img src="/assets/qantixs_logo_q6_lg-47de647414e6d6a9a08db7fb66056da5b5bc622b9ed9c60e766b04ccdaada2f0.png" width="32" height="32" /> px: 32
     <br>
-    <img src="/assets/qantixs_logo_q6_lg-9dac2e66c56026ae136fe0e23115f7aca0719eb4a43be59cd9676ff1ab217344.png" width="64" height="64" /> px: 64
+    <img src="/assets/qantixs_logo_q6_lg-47de647414e6d6a9a08db7fb66056da5b5bc622b9ed9c60e766b04ccdaada2f0.png" width="64" height="64" /> px: 64
     <br>
-    <img src="/assets/qantixs_logo_q6_lg-9dac2e66c56026ae136fe0e23115f7aca0719eb4a43be59cd9676ff1ab217344.png" width="128" height="128" /> px: 128
+    <img src="/assets/qantixs_logo_q6_lg-47de647414e6d6a9a08db7fb66056da5b5bc622b9ed9c60e766b04ccdaada2f0.png" width="128" height="128" /> px: 128
     <br>
-    <img src="/assets/qantixs_logo_q6_lg-9dac2e66c56026ae136fe0e23115f7aca0719eb4a43be59cd9676ff1ab217344.png" width="256" height="256" /> px: 256
+    <img src="/assets/qantixs_logo_q6_lg-47de647414e6d6a9a08db7fb66056da5b5bc622b9ed9c60e766b04ccdaada2f0.png" width="256" height="256" /> px: 256
   </div>
   <div class="basis-3/6">
     <h1 class="text-5xl">dynamic logo</h1>
@@ -187,7 +188,7 @@ function drawQantixsLogo(ctx, cH, cW, mX, mY) {
   <canvas width="64px" height="64px" id="qantixs_logo_64" style="height: 64px; width: 64px;"></canvas>
   px: 64
   <br>
-  <canvas width="128px" height="128px" id="qantixs_logo_128" style="height: 128px; width: 128px;"></canvas>
+  <canvas width="128px" height="128px" id="qantixs_logo_128_n1" style="height: 128px; width: 128px;"></canvas>
   px: 128
   <br>
   <canvas width="256px" height="256px" id="qantixs_logo_256" style="height: 256px; width: 256px;"></canvas>
@@ -196,7 +197,7 @@ function drawQantixsLogo(ctx, cH, cW, mX, mY) {
 </div>
 
       <br>
-      <p>r9</p>
+      <p>r10</p>
     </main>
   </body>
 </html>
