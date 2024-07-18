@@ -4,7 +4,7 @@
     <title>qantixs</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="WFKi6oivHIeB2GI04zFNQt_H0C2YdkEbxK_ue3TYr7RN8Xofq1n2XmMlk57PdoM7Taev_V23Z7WGT9xCZ4kTyA" />
+<meta name="csrf-token" content="N2dDe35FuUzzQi2dzr0lCpxH_5shgpQKA-8wisASWzoF7MvPW_Bvkp9jMOyfryoTVBjczxuEE-oNr5j8c8TYuw" />
     
     <link rel="stylesheet" href="/assets/tailwind-e939028186df1b79a1f87b3c15ca0aef923068d25fb4cf118704bd3843b25900.css" data-turbo-track="reload" />
 <link rel="stylesheet" href="/assets/inter-font-8c3e82affb176f4bca9616b838d906343d1251adc8408efe02cf2b1e4fcf2bc4.css" data-turbo-track="reload" />
@@ -43,95 +43,12 @@
 
   <body>
     <main class="container mx-auto mt-28 px-5 ">
-      <script>
-window.onload = function(){
-  registerQantixsLogo("qantixs_logo_256");
-}
-
-function registerQantixsLogo(id) {
-  console.log("registerQantixsLogo:", id);
-  var canvas = document.getElementById(id);
-  var ctx = canvas.getContext("2d");
-
-  canvas.addEventListener("mousemove", (e) => {
-    //console.log("mousemove: ", id, e.offsetX, e.offsetY);
-    drawQantixsLogo(ctx, canvas.height, canvas.width, e.offsetX, e.offsetY);
-  });
-
-  drawQantixsLogo(ctx, canvas.height, canvas.width, -1, -1);
-}
-
-function drawQantixsLogo(ctx, cH, cW, mX, mY) {
-  const logoSize = Math.min(cH, cW);
-  const logoSizeHalf = logoSize / 2.0;
-  const radius = logoSize / 16.0;
-  const diameter = 2.0 * radius;
-  const spacing = 0.8 * radius;
-  const startAngle = 0;
-  const endAngle = 2 * Math.PI;
-  const ballCnt = 6;
-  const maskSize = Math.sqrt(2) * logoSize;
-  const sin_pi_4 = Math.sin(Math.PI / 4.0);
-  const cos_pi_4 = Math.cos(Math.PI / 4.0);
-  //console.log("logoSize:", logoSize, "radius:", radius, "spacing:", spacing, "mX:", mX, "mY:", mY);
-
-  ctx.beginPath();
-  ctx.lineWidth = 1;
-  ctx.fillStyle = "#ffffff";
-  ctx.rect(0, 0, logoSize, logoSize);
-  ctx.fill();
-
-  for (let col = 0; col < ballCnt; col++) {
-    for (let row = 0; row < ballCnt; row++) {
-      var circle = new Path2D();
-      var x = radius + spacing * col + diameter * col;
-      var y = radius + spacing * row + diameter * row;
-
-      // vec_r´ = Translate_Inverse o Rotation o Translate(vec_r)
-      // Translate
-      x = x - logoSizeHalf;
-      y = y - logoSizeHalf;
-
-      // Rotate
-      var xx = x * cos_pi_4 + y * sin_pi_4;
-      var yy = x * (-1) * sin_pi_4 + y * cos_pi_4;
-
-      // Translate_Inverse
-      xx = xx + logoSizeHalf;
-      yy = yy + logoSizeHalf;
-
-      circle.moveTo(xx, yy);
-      circle.arc(xx, yy, radius, startAngle, endAngle, true);
-
-      if (ctx.isPointInPath(circle, mX, mY)) {
-        ctx.fillStyle = "#ff9400";
-      }
-      else {
-        ctx.fillStyle = "#0094ff";
-      }
-
-      ctx.fill(circle);
-    }
-  }
-
-  ctx.beginPath();
-  ctx.fillStyle = "#ffffff";
-  ctx.moveTo(0, 0);
-  ctx.lineTo(maskSize * logoSize, 0);
-  ctx.lineTo(maskSize * logoSize, maskSize * logoSize);
-  ctx.lineTo(0, maskSize * logoSize);
-
-  ctx.moveTo(logoSizeHalf, logoSizeHalf);
-  ctx.arc(logoSizeHalf, logoSizeHalf, logoSizeHalf, startAngle, endAngle, true);
-  ctx.fill();
-}
-</script>
-<div class="flex flex-row">
+      <div class="flex flex-row">
   <img src="/assets/qantixs_logo_q6_name_lg-b9292ed32cfa029ecb57c09fa598525c8ac8a937e8d736b53b760c00b6a1f8d5.png" />
 </div>
 
       <br>
-      <p>r12</p>
+      <p>r14</p>
     </main>
   </body>
 </html>
