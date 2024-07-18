@@ -4,9 +4,9 @@
     <title>qantixs</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="8rSoQGuH4huRrPtHt2Fb666QOEiRL4pzrDSfE0I9IkOMdl46ZncReeW4bgYoZtTXlucPNzubhX6v3XuBS_Uyfw" />
+<meta name="csrf-token" content="OezaPfIY3s2WD5T-0xKGAv5JB4qnZ-o2Tck55GvGatIsTwLI0e40FHTyZVT_VUh7bCl4WmKmzJgPKQvdeJfWrg" />
     
-    <link rel="stylesheet" href="/assets/tailwind-6470b2096cc5659ccc9275f2cd48f3860268bad7e1ba2d0a7643acefb83284d6.css" data-turbo-track="reload" />
+    <link rel="stylesheet" href="/assets/tailwind-e939028186df1b79a1f87b3c15ca0aef923068d25fb4cf118704bd3843b25900.css" data-turbo-track="reload" />
 <link rel="stylesheet" href="/assets/inter-font-8c3e82affb176f4bca9616b838d906343d1251adc8408efe02cf2b1e4fcf2bc4.css" data-turbo-track="reload" />
     <link rel="stylesheet" href="/assets/application-fe440406e54bdd95ec9046fd7f7b3f6803f9748857226012c8213a74c8350ae1.css" data-turbo-track="reload" />
     <script type="importmap" data-turbo-track="reload">{
@@ -66,6 +66,14 @@ function registerQantixsLogo(id) {
   });
 
   drawQantixsLogo(ctx, canvas.height, canvas.width, -1, -1);
+  resetQantixsLogoTimer(id, ctx, canvas.height, canvas.width);
+}
+
+function resetQantixsLogoTimer(id, ctx, h, w){
+  var timer = setInterval(function() {
+     //console.log("timer:", id);
+    drawQantixsLogo(ctx, h, w);
+  }, 2000);
 }
 
 function drawQantixsLogo(ctx, cH, cW, mX, mY) {
@@ -197,7 +205,7 @@ function drawQantixsLogo(ctx, cH, cW, mX, mY) {
 </div>
 
       <br>
-      <p>r11</p>
+      <p>r12</p>
     </main>
   </body>
 </html>
