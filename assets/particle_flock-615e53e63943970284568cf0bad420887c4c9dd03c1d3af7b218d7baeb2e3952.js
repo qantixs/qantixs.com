@@ -142,7 +142,7 @@ class Particle {
     }
 
     // Edge repulsion - push particles away from borders
-    const edgeMargin = 100;
+    const edgeMargin = 200;
     const edgeForce = 0.8;
 
     if (this.x < edgeMargin) {
