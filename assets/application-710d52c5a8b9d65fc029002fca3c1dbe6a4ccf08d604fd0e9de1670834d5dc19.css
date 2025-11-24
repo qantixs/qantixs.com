@@ -26,3 +26,14 @@
 
 
  */
+
+.qantixs-logo {
+  font-family: "Comfortaa", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  position: relative;
+  padding: 50px;
+  z-index: 10000;
+  background-color: white;
+}
