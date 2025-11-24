@@ -4,11 +4,13 @@ class ParticleFlock {
     this.canvas = null;
     this.ctx = null;
     this.particles = [];
-    this.particleCount = 150;
+    this.particleDensity = 0.00035; // particles per pixel^2
     this.grid = null;
     this.cellSize = 150;
     this.lastUpdate = 0;
     this.updateInterval = 1000 / 30; // 30fps
+    this.mouseX = null;
+    this.mouseY = null;
     this.init();
   }
 
@@ -27,13 +29,12 @@ class ParticleFlock {
     this.ctx = this.canvas.getContext('2d');
     this.resize();
 
-    // Create particles
-    for (let i = 0; i < this.particleCount; i++) {
-      this.particles.push(new Particle(this.canvas.width, this.canvas.height));
-    }
-
     // Event listeners
     window.addEventListener('resize', () => this.resize());
+    window.addEventListener('mousemove', (e) => {
+      this.mouseX = e.clientX;
+      this.mouseY = e.clientY;
+    });
 
     // Start animation
     this.animate();
@@ -42,6 +43,16 @@ class ParticleFlock {
   resize() {
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
+
+    // Calculate particle count based on canvas area
+    const area = this.canvas.width * this.canvas.height;
+    const particleCount = Math.floor(area * this.particleDensity);
+
+    // Reinitialize particles for new dimensions
+    this.particles = [];
+    for (let i = 0; i < particleCount; i++) {
+      this.particles.push(new Particle(this.canvas.width, this.canvas.height));
+    }
   }
 
   buildSpatialGrid() {
@@ -81,7 +92,7 @@ class ParticleFlock {
 
       this.particles.forEach(particle => {
         const nearby = this.getNearbyParticles(particle);
-        particle.update(nearby);
+        particle.update(nearby, this.mouseX, this.mouseY);
         particle.draw(this.ctx);
       });
 
@@ -101,6 +112,7 @@ class Particle {
     this.size = Math.random() * 2 + 1;
     this.opacity = Math.random() * 0.5 + 0.2;
     this.color = this.getColor();
+    this.updateCounter = Math.floor(Math.random() * 60); // Random start offset
   }
 
   getColor() {
@@ -113,14 +125,55 @@ class Particle {
     return colors[Math.floor(Math.random() * colors.length)];
   }
 
-  update(nearbyParticles) {
+  update(nearbyParticles, mouseX, mouseY) {
+    // Mouse repulsion
+    if (mouseX !== null && mouseY !== null) {
+      const dx = this.x - mouseX;
+      const dy = this.y - mouseY;
+      const distSq = dx * dx + dy * dy;
+      const mouseRadiusSq = 10000; // 100^2
+
+      if (distSq < mouseRadiusSq && distSq > 0.01) {
+        const dist = Math.sqrt(distSq);
+        const force = (100 - dist) / 100;
+        this.vx += (dx / dist) * force * 2.0;
+        this.vy += (dy / dist) * force * 2.0;
+      }
+    }
+
+    // Edge repulsion - push particles away from borders
+    const edgeMargin = 100;
+    const edgeForce = 0.8;
+
+    if (this.x < edgeMargin) {
+      this.vx += edgeForce * (1 - this.x / edgeMargin);
+    }
+    if (this.x > window.innerWidth - edgeMargin) {
+      this.vx -= edgeForce * (1 - (window.innerWidth - this.x) / edgeMargin);
+    }
+    if (this.y < edgeMargin) {
+      this.vy += edgeForce * (1 - this.y / edgeMargin);
+    }
+    if (this.y > window.innerHeight - edgeMargin) {
+      this.vy -= edgeForce * (1 - (window.innerHeight - this.y) / edgeMargin);
+    }
+
+    // Periodic random direction change (10% get 10x boost)
+    this.updateCounter++;
+    if (this.updateCounter >= 60) {
+      const multiplier = Math.random() < 0.2 ? 3.0 : 1.9;
+      this.vx += (Math.random() - 0.5) * multiplier;
+      this.vy += (Math.random() - 0.5) * multiplier;
+      this.updateCounter = 0;
+    }
+
     // Boid flocking forces
     let separationX = 0, separationY = 0;
     let cohesionX = 0, cohesionY = 0;
     let alignmentX = 0, alignmentY = 0;
     let cohesionCount = 0;
 
-    const separationDistSq = 2500;  // 50^2 - avoid sqrt
+    const separationDistSq = 10000;  // 100^2 - avoid sqrt
     const cohesionDistSq = 22500;   // 150^2 - avoid sqrt
 
     nearbyParticles.forEach(other => {
@@ -133,7 +186,7 @@ class Particle {
       // Separation - avoid crowding
       if (distSq < separationDistSq && distSq > 0.01) {
         const dist = Math.sqrt(distSq);
-        const force = (50 - dist) / 50;
+        const force = (100 - dist) / 100;
         separationX -= (dx / dist) * force;
         separationY -= (dy / dist) * force;
       }
@@ -179,16 +232,16 @@ class Particle {
     }
 
     // Apply velocity with damping
-    this.x += this.vx;
-    this.y += this.vy;
     this.vx *= 0.94;
     this.vy *= 0.94;
+    this.x += this.vx;
+    this.y += this.vy;
 
-    // Wrap edges
-    if (this.x < 0) this.x = window.innerWidth;
-    if (this.x > window.innerWidth) this.x = 0;
-    if (this.y < 0) this.y = window.innerHeight;
-    if (this.y > window.innerHeight) this.y = 0;
+    // Keep particles in bounds (5px margin inside window)
+    if (this.x < 5) this.x = 5;
+    if (this.x > window.innerWidth - 5) this.x = window.innerWidth - 5;
+    if (this.y < 5) this.y = 5;
+    if (this.y > window.innerHeight - 5) this.y = window.innerHeight - 5;
   }
 
   draw(ctx) {
