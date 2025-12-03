@@ -11,6 +11,9 @@ class ParticleFlock {
     this.updateInterval = 1000 / 30; // 30fps
     this.mouseX = null;
     this.mouseY = null;
+    this.pointX = null;
+    this.pointY = null;
+    this.updatePoint = 0;
     this.init();
   }
 
@@ -90,9 +93,20 @@ class ParticleFlock {
 
       this.buildSpatialGrid();
 
+      this.updatePoint++;
+      if (this.updatePoint >= 90){
+        this.pointX = Math.random() * window.innerWidth;
+        this.pointY = Math.random() * window.innerHeight;
+        this.updatePoint = -30;
+      }
+      else if ( this.updatePoint == 0){
+        this.pointX = null;
+        this.pointY = null;
+      }
+
       this.particles.forEach(particle => {
         const nearby = this.getNearbyParticles(particle);
-        particle.update(nearby, this.mouseX, this.mouseY);
+        particle.update(nearby, this.mouseX, this.mouseY, this.pointX, this.pointY);
         particle.draw(this.ctx);
       });
 
@@ -125,7 +139,7 @@ class Particle {
     return colors[Math.floor(Math.random() * colors.length)];
   }
 
-  update(nearbyParticles, mouseX, mouseY) {
+  update(nearbyParticles, mouseX, mouseY, pointX, pointY) {
     // Mouse repulsion
     if (mouseX !== null && mouseY !== null) {
       const dx = this.x - mouseX;
@@ -136,6 +150,20 @@ class Particle {
       if (distSq < mouseRadiusSq && distSq > 0.01) {
         const dist = Math.sqrt(distSq);
         const force = (400 - dist) / 400;
+        this.vx += (dx / dist) * force * 2.0;
+        this.vy += (dy / dist) * force * 2.0;
+      }
+    }
+
+    if (pointX !== null && pointY !== null) {
+      const dx = this.x - pointX;
+      const dy = this.y - pointY;
+      const distSq = dx * dx + dy * dy;
+      const pointRadiusSq = 160000; // 400^2
+
+      if (distSq < pointRadiusSq && distSq > 0.01) {
+        const dist = Math.sqrt(distSq);
+        const force = (100 - dist) / 100;
         this.vx += (dx / dist) * force * 2.0;
         this.vy += (dy / dist) * force * 2.0;
       }
